@@ -1,7 +1,7 @@
 from flask import Flask, request
 
-from my_image import MyImage
-from errors import InputsError
+from .my_image import MyImage
+from .errors import InputsError
 
 thumbnail_app = Flask(__name__)
 

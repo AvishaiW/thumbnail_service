@@ -4,7 +4,7 @@ import requests
 from PIL import Image, ImageOps
 from flask import send_file
 
-from errors import InputsError, FormatError
+from .errors import InputsError, FormatError
 
 
 class MyImage(object):
