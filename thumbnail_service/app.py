@@ -31,7 +31,3 @@ def check_params(params):
         raise InputsError("height and width must be positive numbers")
 
     return url, width, height
-
-
-if __name__ == "__main__":
-    thumbnail_app.run(host='0.0.0.0')

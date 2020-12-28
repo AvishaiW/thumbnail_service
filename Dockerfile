@@ -6,4 +6,4 @@ RUN apk update \
     && apk add jpeg-dev zlib-dev libjpeg \
     && pip install -r requirements.txt \
     && apk del build-deps
-CMD ["python","thumbnail_service/app.py"]
+CMD ["python","main.py"]
