@@ -1,7 +1,7 @@
 from flask import Flask, request
 
-from thumbnail_service.my_image import MyImage
-from thumbnail_service.errors import InputsError
+from my_image import MyImage
+from errors import InputsError
 
 thumbnail_app = Flask(__name__)
 
@@ -31,3 +31,7 @@ def check_params(params):
         raise InputsError("height and width must be positive numbers")
 
     return url, width, height
+
+
+if __name__ == "__main__":
+    thumbnail_app.run()
