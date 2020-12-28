@@ -62,6 +62,10 @@ class MyImage(object):
         return self.__class__(image=ImageOps.expand(self.image, padding))
 
     def serve_pil_image(self):
+        """
+        Sending the Image back to be displayed on the browser
+        :return:
+        """
         img_io = BytesIO()
         self.image.save(img_io, 'JPEG')
         img_io.seek(0)

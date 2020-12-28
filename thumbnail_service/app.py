@@ -7,7 +7,7 @@ thumbnail_app = Flask(__name__)
 
 
 @thumbnail_app.route('/thumbnail')
-def get_request():
+def handle_request():
     try:
         url, width, height = check_params(request.args)
         img = MyImage(url=url)
@@ -23,8 +23,8 @@ def check_params(params):
         raise InputsError("Wrong parameters! Enter the url of your image and the target height & width only")
     try:
         url = params.get('url')
-        height = int(params.get('height'))  # check if int larger than 0
-        width = int(params.get('width'))  # check if int larger than zero
+        height = int(params.get('height'))
+        width = int(params.get('width'))
     except ValueError:
         raise ValueError("height and width must be numbers")
     if height <= 0 or width <= 0:
