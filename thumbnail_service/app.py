@@ -10,7 +10,7 @@ thumbnail_app = Flask(__name__)
 def get_request():
     try:
         url, width, height = check_params(request.args)
-        img = MyImage(url)
+        img = MyImage(url=url)
         new_img = img.new_proportions(width, height)
         padded_img = new_img.pad_image(width, height)
         return padded_img.serve_pil_image()
@@ -34,4 +34,4 @@ def check_params(params):
 
 
 if __name__ == "__main__":
-    thumbnail_app.run()
+    thumbnail_app.run(host='0.0.0.0')

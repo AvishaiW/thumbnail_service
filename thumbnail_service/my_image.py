@@ -18,8 +18,7 @@ class MyImage(object):
             self.image = image or Image.open(BytesIO(response.content))
         except Exception:
             raise InputsError("The url must be a valid url of a JPEG image")
-        if self.image.format != 'JPEG':
-            raise FormatError('Image must be in JPEG format')
+
         self.width = self.image.width
         self.height = self.image.height
 
