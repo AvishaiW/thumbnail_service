@@ -2,20 +2,21 @@
 An interview assignment which fetches a JPEG image from a given URL 
 and returns it within the given dimensions while retaining the aspect ratio.
 
-### Installation & Execution  
+## Installation & Execution  
 
-####Server Side
+### Server Side
+
 We are going to see 2 ways to get the server up and running 
 (and of course we have the Heroku app running in the background as well)  
 
-#####Docker
+##### Docker
 - [Install Docker](https://docs.docker.com/get-docker/) on your machine.
 - open your CLI and run `docker run -p 5000:5000 -d avishaiw/thumbnail-service`. 
   The command will pull the image from docker hub and create a new container that 
   maps the 5000 port on the container to the 5000 port on the host (your machine).
   by running the command you'll have a server running on your machine.    
 
-#####Local via Github
+##### Local via Github
 - [Install Python](https://www.python.org/downloads/) 3.x if you don't have it yet on your machine.
 - [install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - open the CLI and pull the project repository running: `git clone https://github.com/AvishaiW/thumbnail_service.git`
@@ -24,7 +25,7 @@ We are going to see 2 ways to get the server up and running
 - run `python main.py` and you'll have the server up and running 
 on your machine exposing the localhost on port 5000  
 
-#### Client side
+### Client Side
 If your brought up the server side locally you can:
 - open your browser and run the following URL:
 `localhost:5000/thumbnail?url={URL}&width={Width}&height={Height}`  
@@ -34,17 +35,13 @@ where:
    - Height: the target height of the thumbnail (positive number).     
 Note that if you enter wrong parameters you'll receive errors.  
 
-#####Heroku App
+##### Heroku App
 The app is also deployed on heroku, so even if you don't run the server locally,
 you can access the app on your browser using the following link:  
 `https://thumbnail-service1.herokuapp.com/thumbnail?url={URL}&width={Width}&height={Height}`  
 where you can fill in the URL,Width & Height as mentioned above.    
 
-####Further Steps   
--[ ] tests  
-
-
-####Scaling Up  
+### Scaling Up  
 Since Flask is a development server, we must add a 
 production ready WSGI server (uWSGI/Gunicorn/etc.), 
 then we will want to be able to multiply the number of instances (AWS EC2 instances perhaps) running the app 
