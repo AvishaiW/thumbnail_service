@@ -2,6 +2,9 @@ from io import BytesIO
 
 import requests
 from PIL import Image, ImageOps
+from flask import send_file
+
+from thumbnail_service.errors import InputsError, FormatError
 
 
 class MyImage(object):
@@ -11,7 +14,12 @@ class MyImage(object):
     def __init__(self, url=None, image=None):
         if url:
             response = requests.get(url)
-        self.image = image or Image.open(BytesIO(response.content))
+        try:
+            self.image = image or Image.open(BytesIO(response.content))
+        except Exception:
+            raise InputsError("The url must be a valid url of a JPEG image")
+        if self.image.format != 'JPEG':
+            raise FormatError('Image must be in JPEG format')
         self.width = self.image.width
         self.height = self.image.height
 
@@ -52,4 +60,10 @@ class MyImage(object):
         vertical_pad = (target_height - self.height) // 2
         padding = (horiz_pad, vertical_pad, horiz_pad, vertical_pad)
 
-        return ImageOps.expand(self.image, padding)
+        return self.__class__(image=ImageOps.expand(self.image, padding))
+
+    def serve_pil_image(self):
+        img_io = BytesIO()
+        self.image.save(img_io, 'JPEG')
+        img_io.seek(0)
+        return send_file(img_io, mimetype='image/jpeg')
