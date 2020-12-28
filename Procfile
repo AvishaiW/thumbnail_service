@@ -1,1 +1,1 @@
-web: gunicorn thumbnail_service.app:app --preload
+web: gunicorn thumbnail_service.app:thumbnail_app --preload
